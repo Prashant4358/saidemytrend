@@ -1,4 +1,4 @@
-def registry = 'https://saidemy.jfrog.io/'
+def registry = 'https://jfrog500.jfrog.io/'
 
 pipeline {
     // Specify the agent to run the pipeline
