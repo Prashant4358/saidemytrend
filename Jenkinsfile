@@ -55,7 +55,7 @@ pipeline {
                     // Log message to indicate JAR publish start
                     echo '<--------------- Jar Publish Started --------------->'
                     // Define the Artifactory server
-                    def server = Artifactory.newServer url: registry + "/artifactory", credentialsId: "jfrog-token"
+                    def server = Artifactory.newServer url: registry + "/artifactory", credentialsId: "artifact-cred"
                     // Set properties for the build
                     def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}"
                     // Define the upload specification
