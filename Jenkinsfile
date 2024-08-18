@@ -1,20 +1,28 @@
 pipeline {
-    agent any
+    agent any 
+    
     environment {
         PATH = "/opt/maven/bin:$PATH"
     }
+    
     stages {
-        stage('GitHub Clone') {
+        stage('Build stage') {
             steps {
-                git url: 'https://github.com/Prashant4358/saidemytrend.git', branch: 'main'
+                echo ".....Build started"
+                sh 'mvn clean deploy -Dmaven.test.skip=true'
+                echo "...build completed..."
             }
         }
-        stage('Build') {
+        
+        stage('Test') { 
             steps {
-                sh 'mvn clean deploy'
+                echo "...testing started..."
+                sh 'mvn surefire-report:report'
+                echo ".....unit test completed"
             }
         }
-        stage('SonarQube analysis') { 
+        
+        stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'saidemy-sonar-scanner'
             }
